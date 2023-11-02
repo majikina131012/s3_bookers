@@ -41,6 +41,20 @@
           </tr>
           <% end %>
         </table>
+        <% unless @user.id == current_user.id %>
+          <% if (current_user.following? @user) && (@user.following? current_user)  %>
+            <% if @isRoom == true %>
+              <p><%= link_to "チャットへ", room_path(@roomId), class:"btn btn-primary btn-lg" %></p>
+            <% else %>
+              <%= form_with model: @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                  <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+              <% end %>
+            <% end %>
+          <% end %>
+       <% end %>
       </div>
     </div>
   </div>

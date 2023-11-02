@@ -34,3 +34,32 @@ li {
 .navbar {
   background-color: red;
 }
+
+/* メッセージコンテナに余白を追加 */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px; /* 左右に10pxずつ余白を追加 */
+}
+
+/* メッセージのスタイルを微調整 */
+.message {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  max-width: 10%; /* コンテナ幅に対する最大幅（適宜調整） */
+}
+
+/* 送信者が右に表示されるメッセージのスタイル */
+.message.right {
+  align-self: flex-end;
+}
+
+.form-text-field {
+  width: 50%;
+  margin: 0 auto; /* 中央揃え */
+}
