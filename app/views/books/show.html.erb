@@ -14,6 +14,7 @@
             <th></th>
             <th>Favorite</th>
             <th>Comment</th>
+            <th>View</th>
           </tr>
           
           <tr>
@@ -60,6 +61,8 @@
             <td>
               <%= @book.book_comments.count %>
             </td>
+            
+            <td><%= @book.read_counts.count %></td>
           </tr>
         </table>
         <div>
