@@ -31,6 +31,12 @@ class Book < ApplicationRecord
   scope :posted_yesterday, -> {
     where("created_at >= ? AND created_at < ?", 1.day.ago.beginning_of_day, Time.zone.now.beginning_of_day)
   }
+  
+  scope :posted_2days_ago, -> { where(created_at: 2.day.ago.all_day) } # 2日前
+  scope :posted_3days_ago, -> { where(created_at: 3.day.ago.all_day) } # 3日前
+  scope :posted_4days_ago, -> { where(created_at: 4.day.ago.all_day) } # 4日前
+  scope :posted_5days_ago, -> { where(created_at: 5.day.ago.all_day) } # 5日前
+  scope :posted_6days_ago, -> { where(created_at: 6.day.ago.all_day) } # 6日前
 
   # 今週の投稿数をカウント
   scope :posted_this_week, -> {
