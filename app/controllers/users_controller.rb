@@ -49,17 +49,17 @@ class UsersController < ApplicationController
     @users = user.follower_users
   end  
   
-  # def search
-  #   @user = User.find(params[:user_id])
-  #   @books = @user.books
-  #   @book = Book.new
-  #   if params[:created_at] == ""#入力欄が空欄なら日付を選択してくださいと表示
-  #     @search_book = "日付を選択してください"
-  #   else
-  #     created_at = params[:created_at]
-  #     @search_book = @books.where(['created_at LIKE?', "#{created_at}%"]).count
-  #   end  
-  # end  
+  def search
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    @book = Book.new
+    if params[:created_at] == ""#入力欄が空欄なら日付を選択してくださいと表示
+      @search_book = "日付を選択してください"
+    else
+      created_at = params[:created_at]
+      @search_book = @books.where(['created_at LIKE?', "#{created_at}%"]).count
+    end  
+  end  
 
   private
 
