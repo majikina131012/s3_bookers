@@ -25,7 +25,7 @@
             </td>
             <td><%= book.body %></td>
             <td>
-              <% if book.favorited_by?(current_user) %>  
+              <% if book.favorited_by?(current_user) %>
                 <%= link_to book_favorites_path(book.id), method: :delete do %>
                   <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
                   <%= book.favorites.count %>
@@ -100,6 +100,60 @@
             </tr>
           </tbody>
         </table>
+        <canvas id="myChart"></canvas>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+              var ctx = document.getElementById('myChart');
+              var myChart = new Chart(ctx, {
+                  type: 'line',
+                      data: {
+                        labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+                        datasets: [
+                          {
+                            label: '投稿した本の数',
+                            data: [
+                              <%= @books.posted_6days_ago.count %>,
+                              <%= @books.posted_5days_ago.count %>,
+                              <%= @books.posted_4days_ago.count %>,
+                              <%= @books.posted_3days_ago.count %>,
+                              <%= @books.posted_2days_ago.count %>,
+                              <%= @books.posted_yesterday.count %>,
+                              <%= @books.posted_today.count %>
+                            ],
+                            borderColor: "rgba(0,0,255,1)",
+                            backgroundColor: "rgba(0,0,0,0)",
+                            tension: 0.4
+                          }
+                        ],
+                      },
+                      options: {
+                        title: {
+                          display: true,
+                          text: '7日間の投稿数の比較'
+                        },
+                        responsive: true,
+                        scales: {
+                          y:{
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                          },
+                          x:{
+                            stacked: true
+                          },
+                        },
+                      }
+              });
+            </script>
+            <!--<%#= form_with url:user_search_path(@user), method: :get, local: false do |f| %>-->
+            <!--  <%#= f.date_field :created_at %>-->
+            <!--  <%#= f.submit '検索', class: "btn btn-primary" %>-->
+            <!--<%# end %>-->
+          
+            <!--<div id="search_result">-->
+            <!--  <%# if @search_book.present? %>-->
+            <!--    <%#= render 'search', search_book: @search_book %>-->
+            <!--  <%# end %>-->
+            <!--</div>-->
       </div>
     </div>
   </div>

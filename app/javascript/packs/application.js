@@ -17,3 +17,5 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import Chart from 'chart.js/auto';
