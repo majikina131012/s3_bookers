@@ -1,5 +1,6 @@
 class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
+  has_many :users, through: :group_users, source: :user
   belongs_to :owner, class_name: "User"
   
   validates :name, presence: true
@@ -12,5 +13,9 @@ class Group < ApplicationRecord
 
   def is_owned_by?(user)
     owner.id == user.id
+  end
+  
+  def include_user?(user)
+    group_users.exists?(user_id: user.id)
   end
 end

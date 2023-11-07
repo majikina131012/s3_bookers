@@ -21,26 +21,26 @@
 
         <ul class="navber-nav ml-auto">
         <% if user_signed_in? %>
-          <li>
+          <li class="header-list">
             <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
               <i class="fas fa-home"></i> Home
             <% end %>
           </li>
 
 
-          <li>
+          <li class="header-list">
             <%= link_to users_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-users"></i> Users
             <% end %>
           </li>
 
-          <li>
+          <li class="header-list">
             <%= link_to books_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-book-open"></i> Books
             <% end %>
           </li>
 
-          <li>
+          <li class="header-list">
             <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-out-alt"></i> logout
             <% end %>
@@ -48,24 +48,24 @@
 
         <% else %>
 
-          <li>
+          <li class="header-list">
             <%= link_to root_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-home"></i> Home
             <% end %>
           </li>
 
-          <li>
+          <li class="header-list">
             <%= link_to about_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-link"></i> About
             <% end %>
           </li>
 
-          <li>
+          <li class="header-list">
             <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-user-plus"></i> sign up
             <% end %>
           </li>
-          <li>
+          <li class="header-list">
             <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-in-alt"></i> login
             <% end %>
