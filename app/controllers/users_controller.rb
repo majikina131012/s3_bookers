@@ -38,17 +38,17 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def follows
     user = User.find(params[:id])
     @users = user.following_users
   end
-  
+
   def followers
     user = User.find(params[:id])
     @users = user.follower_users
-  end  
-  
+  end
+
   def search
     @user = User.find(params[:user_id])
     @books = @user.books
@@ -58,8 +58,8 @@ class UsersController < ApplicationController
     else
       created_at = params[:created_at]
       @search_book = @books.where(['created_at LIKE?', "#{created_at}%"]).count
-    end  
-  end  
+    end
+  end
 
   private
 
