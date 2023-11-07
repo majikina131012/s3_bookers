@@ -22,4 +22,6 @@ Rails.application.routes.draw do
     end
       resource :relationships, only: [:create, :destroy]
     end  
+    
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update]  
 end

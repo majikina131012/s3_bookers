@@ -4,6 +4,7 @@
       <%= render 'books/list', user: @user, book: @book %>
       <div class="col-md-8 offset-md-1">
         <h1>Users</h1>
+        <%= link_to "グループを作成する", new_group_path, class:"btn btn-outline-success mb-2" %>｜<%= link_to "グループ一覧", groups_path, class:"btn btn-outline-info mb-2" %>
         <table class="table">
           <thead>
             <tr>
