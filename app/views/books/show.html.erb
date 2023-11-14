@@ -1,7 +1,7 @@
 <main>
   <div class="container px-5 px-sm-0">
     <div class="row">
-      <%= render 'list', user: @user, book: @book %>
+      <%= render 'list', user: @user, book: Book.new %>
       <div class="col-md-8 offset-md-1">
         <h2>Book detail</h2>
         <table class="table">
@@ -10,41 +10,30 @@
             <th>User image</th>
             <th>Title</th>
             <th>Opinion</th>
-            <th></th>
-            <th></th>
             <th>Favorite</th>
             <th>Comment</th>
+            <th colspan="4"></th>
           </tr>
-          
+
           <tr>
             <td><%= link_to user_path(@book.user.id) do %>
                   <%= @book.user.name %>
-                <% end %>  
+                <% end %>
             </td>
-            
+
             <td><%= link_to user_path(@book.user.id) do %>
                   <%= image_tag @book.user.get_profile_image(100,100) %>
                 <% end %>
             </td>
-            
+
             <td><%= link_to book_path(@book.id) do %>
                   <%= @book.title %></td>
                 <% end %>
-                
+
             <td><%= @book.body %></td>
-            
-            <td><% if @book.user == current_user %>
-                  <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-warning" %>
-                <% end %>
-            </td>
-            
-            <td><% if @book.user == current_user %>
-                  <%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-danger", "data-confirm" => "Are you sure?" %>
-                <% end %>
-            </td>
-            
+
             <td>
-            <% if @book.favorited_by?(current_user) %>  
+            <% if @book.favorited_by?(current_user) %>
                 <%= link_to book_favorites_path(@book.id), method: :delete do %>
                   <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
                   <%= @book.favorites.count %>
@@ -56,15 +45,29 @@
                 <% end %>
               <% end %>
             </td>
-            
+
             <td>
               <%= @book.book_comments.count %>
+            </td>
+
+            <td>
+              <%= render 'rate', book: @book %>
+            </td>
+
+            <td><% if @book.user == current_user %>
+                  <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-warning" %>
+                <% end %>
+            </td>
+
+            <td><% if @book.user == current_user %>
+                  <%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-danger", "data-confirm" => "Are you sure?" %>
+                <% end %>
             </td>
           </tr>
         </table>
         <div>
           <p>コメント数：<%= @book.book_comments.count %></p>
-          
+
           <table>
             <% @book.book_comments.each do |book_comment| %>
               <tr><th><%= book_comment.user.name %><br><%= image_tag book_comment.user.get_profile_image(70,70) %></th><td><%= book_comment.comment %></td></tr>
@@ -73,8 +76,8 @@
                 <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), class:"btn btn-danger btn-sm", method: :delete %>
               <% end %>
               </td></tr>
-              
-            <% end %>  
+
+            <% end %>
           </table>
         </div>
         <div>
