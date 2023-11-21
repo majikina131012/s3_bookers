@@ -76,6 +76,9 @@
     </div>
   </nav>
   </header>
+  <% if user_signed_in? %>
+    <%= render 'tag_searches/tagsearch' %>
+  <% end %>
    <p><%= flash[:notice] %></p>
    <%= yield %>
  </body>

@@ -16,6 +16,12 @@
           <%= f.text_field :title %>
           <h4>Opinion</h4>
           <%= f.text_area :body %>
+          
+          <div class="field">
+            <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+            <%= f.text_field :name, value: @tag_list, class:"form-control"%>
+          </div>
+          
           <%= f.submit 'Update Book', class:"btn btn-success mb-4" %>
         <% end %>
         <p>

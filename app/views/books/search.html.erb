@@ -1,0 +1,23 @@
+<div class="container">
+  <h4>タグが<%=@tag.name%>の投稿一覧</h4>
+  
+  <!--タグリスト-->
+  <% @tag_list.each do |list|%>
+    <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+    <%="(#{list.books.count})" %>
+  <% end %>
+  
+  <% @books.each do |book| %>
+  <!--投稿はカードで囲む-->
+  <div class="card">
+    <div class="card-body">
+      <!--タイトル表示される文字数は２５文字までにしてます-->
+      <h6 class="card-title">
+        <%=link_to book_path(book.id) do %>
+          <%= book.title.truncate(25) %>
+        <% end %>
+      </h6>
+    </div>
+  </div>
+  <% end %>
+</div>

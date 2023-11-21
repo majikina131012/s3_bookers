@@ -22,4 +22,7 @@ Rails.application.routes.draw do
     end
       resource :relationships, only: [:create, :destroy]
     end  
+    
+  get "search_tag" => "books#search"
+  get 'tagsearches/search' => 'tag_searches#search'
 end
